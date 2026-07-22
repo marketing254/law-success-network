@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+build
+.env
+.env.local
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+.vercel
+# Deliberately not published: infra details (SMTP host/user, team addresses).
+# Keep the local copy as the single env reference.
+.env.example

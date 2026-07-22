@@ -1,0 +1,69 @@
+<!--
+  LMN admin sign-in code (Supabase Auth template)
+
+  WHERE TO PASTE: Supabase dashboard -> Authentication -> Email Templates ->
+  "Magic Link". Replace the whole body with this HTML, and set the subject to:
+
+      Your Law Member Network sign-in code
+
+  Paste the SAME template into "Confirm signup" as well, so the very first
+  sign-in of a new auth user also receives a code instead of a link.
+
+  CRITICAL: the template must contain {{ .Token }}. That is what makes Supabase
+  send a 6-digit code instead of a link. If a magic LINK ever starts arriving,
+  this template lost its {{ .Token }} on a bad save; re-paste it.
+
+  Also set (Authentication -> Providers -> Email): OTP expiry 600 seconds.
+  And configure Custom SMTP (Project Settings -> Auth -> SMTP) with the
+  Rackspace noreply@lawmembernetwork.com credentials so this sends from the
+  operational domain.
+
+  Copy rules: inline styles only, no em-dashes, entity line in the footer.
+-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f4f1ea;padding:28px 12px">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="520" cellpadding="0" cellspacing="0" border="0" style="width:520px;max-width:100%;background:#ffffff;border-radius:14px;overflow:hidden">
+        <tr>
+          <td style="height:4px;background:#C8993D;line-height:4px;font-size:0">&nbsp;</td>
+        </tr>
+        <tr>
+          <td style="padding:30px 34px 0">
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:700;color:#1B3A5C">Law Member Network</div>
+            <div style="font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:12px;color:#63737f;margin-top:3px;letter-spacing:.08em;text-transform:uppercase">Powered by Dominate Law</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:22px 34px 0">
+            <h1 style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1.25;font-weight:700;color:#1B3A5C">Your sign-in code</h1>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:14px 34px 0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:15px;line-height:1.6;color:#22303f">
+            Enter this code to sign in. It expires in 10 minutes.
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:20px 34px 0">
+            <div style="padding:18px;border:1px solid #d8d2c4;border-radius:10px;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:32px;font-weight:700;letter-spacing:9px;color:#1B3A5C;background:#FBF6E9">{{ .Token }}</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:18px 34px 30px;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:13px;line-height:1.6;color:#63737f">
+            If you did not try to sign in, you can ignore this email. The code is useless without access to this inbox.
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#1B3A5C;padding:20px 34px">
+            <div style="font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:12px;line-height:1.6;color:#8fa3b5">
+              Law Member Network, a service offered by Ekwa Marketing Inc.<br>
+              <a href="mailto:support@lawmembernetwork.com" style="color:#C8993D;text-decoration:none">support@lawmembernetwork.com</a>
+              &middot;
+              <a href="https://lawmembernetwork.com" style="color:#C8993D;text-decoration:none">lawmembernetwork.com</a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
