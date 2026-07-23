@@ -33,7 +33,6 @@ export default function SiteFooter() {
               <Link href="/partners">Partners</Link>
               <Link href="/#pricing">Pricing</Link>
               <Link href="/#faq">FAQ</Link>
-              <Link href="/agreements">Agreements</Link>
             </div>
           </div>
           <div>

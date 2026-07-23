@@ -144,11 +144,16 @@ export default function PartnersPage() {
             <div className="tilt3d" data-tilt="4">
               <div className="floaty">
                 <div className="emblem sheen">
-                  <img
-                    src="/assets/lmn-icon.png"
-                    alt=""
-                    style={{ width: "76%", height: "76%", objectFit: "contain" }}
-                  />
+                  {/* Interlocked rings with a tick: a verified partnership.
+                      class="draw" lets the motion layer draw the strokes in. */}
+                  <svg className="draw" viewBox="0 0 100 100" strokeWidth="2.5" aria-hidden="true">
+                    <circle cx="38" cy="56" r="17" />
+                    <circle cx="62" cy="56" r="17" />
+                    <path d="M44 56l5 5 9-10" />
+                    <path d="M50 30v-8" />
+                    <path d="M37 33l-5-7" />
+                    <path d="M63 33l5-7" />
+                  </svg>
                 </div>
               </div>
             </div>

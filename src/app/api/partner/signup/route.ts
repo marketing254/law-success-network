@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { requestFingerprint } from "@/lib/security/request";
 import { checkRateLimit } from "@/lib/security/rateLimit";
-import { str, isEmail, normalizeEmail, safeUrl, bool } from "@/lib/validate";
+import { str, isEmail, normalizeEmail, safeUrl, bool, nullIfNa } from "@/lib/validate";
 import { sendPartnerConfirmationEmail } from "@/lib/email/templates";
 import { notifySignup } from "@/lib/email/teamNotify";
 
@@ -27,13 +27,14 @@ export async function POST(req: NextRequest) {
   const companyName = str(body.company ?? body.company_name, 200);
   const contactName = str(body.contact_name, 200);
   const rawEmail = str(body.email ?? body.contact_email, 254);
-  const phone = str(body.phone ?? body.contact_phone, 40);
-  const website = safeUrl(body.website);
+  // "NA" in any non-required field passes through as "no value" (see nullIfNa)
+  const phone = nullIfNa(str(body.phone ?? body.contact_phone, 40));
+  const website = safeUrl(nullIfNa(str(body.website, 500)));
   const category = str(body.category, 120);
   const description = str(body.description, 2000);
   const memberOffer = str(body.member_offer, 2000);
-  const secondaryEmail = str(body.secondary_email, 254);
-  const secondaryPhone = str(body.secondary_phone, 40);
+  const secondaryEmail = nullIfNa(str(body.secondary_email, 254));
+  const secondaryPhone = nullIfNa(str(body.secondary_phone, 40));
   const signatureName = str(body.signature_name, 200);
   const signatureTitle = str(body.signature_title, 200);
 

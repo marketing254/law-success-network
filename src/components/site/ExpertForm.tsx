@@ -180,7 +180,7 @@ export default function ExpertForm() {
         <input
           id="eweb"
           name="website_linkedin"
-          type="url"
+          type="text"
           placeholder="https://"
           required
           value={form.website_linkedin}
@@ -192,7 +192,7 @@ export default function ExpertForm() {
         <input
           id="ebooking"
           name="booking_link"
-          type="url"
+          type="text"
           placeholder="https://"
           value={form.booking_link}
           onChange={(e) => set("booking_link", e.target.value)}
@@ -231,7 +231,7 @@ export default function ExpertForm() {
         />
         <span>
           I have read and agree to the{" "}
-          <a href="/agreements/expert" target="_blank" rel="noopener">
+          <a href="/agreements/expert">
             Expert Agreement
           </a>
           .

@@ -189,7 +189,7 @@ export default function PartnerForm() {
         <input
           id="website"
           name="website"
-          type="url"
+          type="text"
           autoComplete="url"
           placeholder="https://"
           required
@@ -289,7 +289,7 @@ export default function PartnerForm() {
         />
         <span>
           I have read and agree to the{" "}
-          <a href="/agreements/partner" target="_blank" rel="noopener">
+          <a href="/agreements/partner">
             Partner Agreement
           </a>
           .

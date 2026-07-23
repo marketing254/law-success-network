@@ -196,7 +196,18 @@ export function renderSimple(opts: {
   contactEmail: string;
   footerNote?: string;
   html?: string;
+  /** Optional pill button rendered after the paragraphs. */
+  cta?: { label: string; url: string };
 }): string {
+  const cta = opts.cta
+    ? `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:22px 0 6px"><tr>
+        <td style="background:${GOLD};border-radius:999px">
+          <a href="${esc(opts.cta.url)}" style="display:inline-block;padding:13px 28px;font-family:${BODY_FONT};font-size:15px;font-weight:700;color:#1a1408;text-decoration:none;border-radius:999px">${esc(
+            opts.cta.label
+          )}</a>
+        </td>
+      </tr></table>`
+    : "";
   return `<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(opts.headline)}</title></head>
@@ -224,6 +235,7 @@ export function renderSimple(opts: {
         )
         .join("")}
       ${opts.html || ""}
+      ${cta}
     </td></tr>
     <tr><td style="background:${NAVY};padding:22px 34px">
       ${

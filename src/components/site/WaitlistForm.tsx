@@ -142,7 +142,7 @@ export default function WaitlistForm() {
           />
           <span>
             I have read and agree to the{" "}
-            <a href="/agreements/member" target="_blank" rel="noopener">
+            <a href="/agreements/member">
               Member Agreement
             </a>
             , and I&rsquo;d like to receive launch updates.

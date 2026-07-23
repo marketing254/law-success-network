@@ -120,11 +120,18 @@ export default function ExpertsPage() {
             <div className="tilt3d" data-tilt="4">
               <div className="floaty">
                 <div className="emblem sheen">
-                  <img
-                    src="/assets/lmn-icon.png"
-                    alt=""
-                    style={{ width: "76%", height: "76%", objectFit: "contain" }}
-                  />
+                  {/* Open book with rising light: one recording becomes the kit.
+                      class="draw" lets the motion layer draw the strokes in. */}
+                  <svg className="draw" viewBox="0 0 100 100" strokeWidth="2.5" aria-hidden="true">
+                    <path d="M50 36v38" />
+                    <path d="M50 36c-8-6-19-8-30-6v38c11-2 22 0 30 6" />
+                    <path d="M50 36c8-6 19-8 30-6v38c-11-2-22 0-30 6" />
+                    <path d="M50 22v-8" />
+                    <path d="M35 26l-5-7" />
+                    <path d="M65 26l5-7" />
+                    <path d="M26 20l-6-4" />
+                    <path d="M74 20l6-4" />
+                  </svg>
                 </div>
               </div>
             </div>

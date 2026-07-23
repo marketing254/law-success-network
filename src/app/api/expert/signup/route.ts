@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { requestFingerprint } from "@/lib/security/request";
 import { checkRateLimit } from "@/lib/security/rateLimit";
-import { str, isEmail, normalizeEmail, safeUrl, bool } from "@/lib/validate";
+import { str, isEmail, normalizeEmail, safeUrl, bool, nullIfNa } from "@/lib/validate";
 import { sendExpertConfirmationEmail } from "@/lib/email/templates";
 import { notifySignup } from "@/lib/email/teamNotify";
 
@@ -25,10 +25,13 @@ export async function POST(req: NextRequest) {
 
   const fullName = str(body.name ?? body.full_name, 200);
   const rawEmail = str(body.email, 254);
-  const phone = str(body.phone, 40);
+  // Applicants type "NA" into fields they don't have; that passes through as
+  // "no value" instead of blocking (or being mangled into https://na by the
+  // URL normalizer).
+  const phone = nullIfNa(str(body.phone, 40));
   const specialty = str(body.specialty, 200);
-  const website = safeUrl(body.website_linkedin ?? body.website);
-  const bookingLink = safeUrl(body.booking_link);
+  const website = safeUrl(nullIfNa(str(body.website_linkedin ?? body.website, 500)));
+  const bookingLink = safeUrl(nullIfNa(str(body.booking_link, 500)));
   const teach = str(body.what_you_would_teach, 4000);
   const topics = str(body.topics, 2000);
 
@@ -143,7 +146,7 @@ export async function POST(req: NextRequest) {
       ["Phone", phone],
       ["Website", website],
       ["Would teach", teach],
-      ["Also a partner", alsoPartner ? `Yes — ${companyName}` : "No"],
+      ["Also a partner", alsoPartner ? `Yes: ${companyName}` : "No"],
       ["Founding consideration", bool(body.considered_founding) ? "Yes" : "No"],
     ],
   });

@@ -1,6 +1,7 @@
 import SiteNav from "@/components/site/SiteNav";
 import SiteFooter from "@/components/site/SiteFooter";
 import WaitlistForm from "@/components/site/WaitlistForm";
+import Countdown from "@/components/site/Countdown";
 
 /** The gold line-draw scales divider, used twice on the page. */
 function ScalesDivider() {
@@ -63,6 +64,8 @@ export default function HomePage() {
           aria-hidden="true"
         />
         <div className="wrap">
+          {/* launch countdown strip: full hero width, above the fold */}
+          <Countdown />
           <div>
             <span className="badge hx hx-fade" style={{ "--d": ".05s" } as React.CSSProperties}>
               <span className="bdot" aria-hidden="true" /> Powered by Dominate Law
@@ -124,7 +127,24 @@ export default function HomePage() {
                       Law Member Network<small>Founding Member</small>
                     </div>
                     <span className="seal">
-                      <img src="/assets/lmn-icon.png" alt="" width={46} height={46} />
+                      {/* Scales of justice, gold line-art (same motif as the
+                          section dividers) in place of the logo mark. */}
+                      <svg
+                        viewBox="0 0 100 100"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3.5"
+                        strokeLinecap="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M50 14v62" />
+                        <path d="M24 26h52" />
+                        <path d="M24 26L14 46M24 26l10 20" />
+                        <path d="M14 46a10 10 0 0 0 20 0" />
+                        <path d="M76 26L66 46M76 26l10 20" />
+                        <path d="M66 46a10 10 0 0 0 20 0" />
+                        <path d="M38 80h24" />
+                      </svg>
                     </span>
                   </div>
                   <div className="mid">Members &middot; Experts &middot; Partners</div>
@@ -624,7 +644,9 @@ export default function HomePage() {
           <div className="credgrid" data-stagger="110">
             <div className="ccard reveal">
               <div className="src">
-                <span className="av">DL</span>
+                <span className="av logo">
+                  <img src="/assets/dominate-law-logo.png" alt="" />
+                </span>
                 <span>
                   <b>Dominate Law</b>
                   <small>The parent brand</small>
@@ -639,7 +661,9 @@ export default function HomePage() {
             </div>
             <div className="ccard reveal">
               <div className="src">
-                <span className="av g">EK</span>
+                <span className="av logo">
+                  <img src="/assets/ekwa-logo.png" alt="" />
+                </span>
                 <span>
                   <b>Ekwa Marketing</b>
                   <small>The team behind Dominate Law</small>

@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase/admin";
 import { requestFingerprint } from "@/lib/security/request";
 import { checkRateLimit } from "@/lib/security/rateLimit";
-import { str, isEmail, normalizeEmail, bool } from "@/lib/validate";
+import { str, isEmail, normalizeEmail, bool, nullIfNa } from "@/lib/validate";
 import { sendWaitlistConfirmationEmail } from "@/lib/email/templates";
 import { notifySignup } from "@/lib/email/teamNotify";
 
@@ -21,7 +21,8 @@ export async function POST(req: NextRequest) {
   const firstName = str(body.first_name, 120);
   const lastName = str(body.last_name, 120);
   const rawEmail = str(body.email, 254);
-  const phone = str(body.mobile ?? body.phone, 40);
+  // "NA" and friends must never block or be stored as data (see nullIfNa)
+  const phone = nullIfNa(str(body.mobile ?? body.phone, 40));
   const firmName = str(body.firm_name, 200);
   const role = str(body.role, 120);
   const challenge = str(body.biggest_challenge, 2000);

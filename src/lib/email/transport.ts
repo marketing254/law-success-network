@@ -25,8 +25,18 @@ export const MEMBERS_EMAIL =
   process.env.WAITLIST_MEMBERS_EMAIL || "members@lawmembernetwork.com";
 export const PARTNERSHIPS_EMAIL =
   process.env.WAITLIST_PARTNERSHIPS_EMAIL || "founding@lawmembernetwork.com";
+/**
+ * The site URL used inside EMAILS. Every "Visit the network" button points
+ * here and nowhere else — never at anything an applicant typed into a form.
+ * A localhost NEXT_PUBLIC_APP_URL (local dev) is ignored on purpose: a real
+ * email carrying a localhost link is broken for its recipient no matter where
+ * it was generated.
+ */
+const rawSiteUrl = process.env.NEXT_PUBLIC_APP_URL || "";
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_APP_URL || "https://lawmembernetwork.com";
+  !rawSiteUrl || /^https?:\/\/(localhost|127\.|0\.0\.0\.0)/i.test(rawSiteUrl)
+    ? "https://lawmembernetwork.com"
+    : rawSiteUrl;
 
 /** Crude but adequate HTML -> text fallback for the plain-text alternative. */
 function toPlainText(html: string): string {

@@ -174,6 +174,7 @@ export async function sendExpertConfirmationEmail(opts: {
       "A quick reminder of how it works: you share one recording of you teaching your topic, we produce your full content kit in your branding, and interested members reach out to you directly. Your first 6 months are free, then $49/month, then $199/month from month 13. On any paid course you sell to members, **you keep 70%**.",
       "Every expert is vetted for real experience with law firms before being featured, and Expert Hotline referrals are routed by fit, never pay-to-play.",
     ],
+    cta: { label: "Visit the network", url: SITE_URL },
     contactEmail: PARTNERSHIPS_EMAIL,
     footerNote: NOT_LEGAL_ADVICE,
   });
@@ -318,6 +319,7 @@ export async function sendPartnerConfirmationEmail(opts: {
       "A quick reminder of the terms: your first 6 months are free, then $49/month, then $199/month from month 13. Founding partners get **priority placement** in their category.",
       "Partners can also turn on the Expert capability and contribute educational content. It clears the same quality bar as any expert content, and Hotline routing is always by fit, never pay-to-play.",
     ],
+    cta: { label: "Visit the network", url: SITE_URL },
     contactEmail: PARTNERSHIPS_EMAIL,
     footerNote: NOT_LEGAL_ADVICE,
   });

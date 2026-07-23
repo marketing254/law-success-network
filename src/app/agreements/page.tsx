@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function AgreementsIndexPage() {
   return (
     <>
-      <SiteNav active="home" />
+      <SiteNav active="agreements" />
 
       <main className="ag-page">
         <div className="wrap ag-wrap">

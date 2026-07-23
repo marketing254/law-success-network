@@ -46,6 +46,21 @@ export function bool(v: unknown): boolean {
 }
 
 /**
+ * People type "NA" into fields they don't have an answer for, and that must
+ * never block a signup. Placeholder-ish values are normalized to null so they
+ * pass validation as "no value" instead of being stored (or worse, rejected
+ * by a URL parser).
+ *
+ * Only apply this to fields the API does NOT require — turning a required
+ * field's "na" into null would convert a pass into a block, the opposite of
+ * the intent.
+ */
+export function nullIfNa(v: string | null): string | null {
+  if (v === null) return null;
+  return /^(n\/?\.?a\.?|none|nil|nope|-+|\.+)$/i.test(v.trim()) ? null : v;
+}
+
+/**
  * Placeholder domains that must never receive a real email. Used to stop an
  * admin accidentally "sending" a founding invite into the void.
  */

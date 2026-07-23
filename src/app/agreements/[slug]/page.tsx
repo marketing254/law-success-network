@@ -113,7 +113,7 @@ export default async function AgreementPage({ params }: Props) {
 
   return (
     <>
-      <SiteNav active="home" />
+      <SiteNav active="agreements" />
 
       <main className="ag-page">
         <div className="wrap ag-wrap">
